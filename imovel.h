@@ -1,0 +1,6 @@
+class Imovel {
+    private:
+
+    public:
+
+};
