@@ -3,14 +3,17 @@ using namespace std;
 
 class Cliente {
     private:
+        static int nextId;
         int id;
-        int telefone;
+        string telefone;
         string nome;
     public:
-        void setTelefone(int telefone);
+        Cliente(string telefone = "", string nome = "");
+
+        void setTelefone(string telefone);
         void setNome(string nome);
 
         int getId();
-        int getTelefone();
+        string getTelefone();
         string getNome();
 };
