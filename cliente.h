@@ -1,4 +1,6 @@
 #include <string>
+#include <vector>
+#include "imovel.h"
 using namespace std;
 
 class Cliente {
@@ -7,12 +9,15 @@ class Cliente {
         int id;
         string telefone;
         string nome;
+        vector<Imovel> imoveis;
 
     public: // Contrutor e métodos public
         Cliente(string telefone = "", string nome = "");
 
         void setTelefone(string telefone);
         void setNome(string nome);
+
+        void adicionarImovel(Imovel imovel);
 
         int getId();
         string getTelefone();

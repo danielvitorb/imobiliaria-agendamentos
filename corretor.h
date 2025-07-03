@@ -1,4 +1,6 @@
 #include <string>
+#include <vector>
+#include "imovel.h"
 using namespace std;
 
 class Corretor {
@@ -10,6 +12,7 @@ class Corretor {
         bool avaliador;
         double lat;
         double lng;
+        vector<Imovel> imoveis;
 
     public: // Construtor e métodos public
         Corretor(string telefone = "", int x = 0, double latitude = 0, double longitude = 0, string nome = "");
@@ -19,6 +22,8 @@ class Corretor {
         void setAvaliador(int x);
         void setLatitude(double latitude);
         void setLongitude(double longitude);
+
+        void adicionarImovel(Imovel imovel);
 
         int getId();
         string getTelefone();

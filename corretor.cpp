@@ -34,6 +34,11 @@ void Corretor::setLongitude(double longitude){
 }
 
 
+void Corretor::adicionarImovel(Imovel imovel){
+    imoveis.push_back(imovel);
+}
+
+
 // Métodos getters
 int Corretor::getId(){
     return id;
