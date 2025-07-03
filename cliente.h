@@ -1,3 +1,5 @@
+#ifndef CLIENTE_H
+#define CLIENTE_H
 #include <string>
 #include <vector>
 #include "imovel.h"
@@ -23,3 +25,5 @@ class Cliente {
         string getTelefone();
         string getNome();
 };
+
+#endif

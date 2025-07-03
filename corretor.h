@@ -1,3 +1,5 @@
+#ifndef CORRETOR_H
+#define CORRETOR_H
 #include <string>
 #include <vector>
 #include "imovel.h"
@@ -32,3 +34,5 @@ class Corretor {
         double getLatitude();
         double getLongitude();
 };
+
+#endif

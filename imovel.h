@@ -1,3 +1,5 @@
+#ifndef IMOVEL_H
+#define IMOVEL_H
 #include <string>
 using namespace std;
 
@@ -37,3 +39,5 @@ class Imovel {
         double getLongitude();
         string getEndereco();
 };
+
+#endif
