@@ -8,4 +8,4 @@ imobiliaria: $(SRCS)
 	$(CXX) $(CXXFLAGS) -o imobiliaria $(SRCS)
 
 clean:
-	rm -f imobiliaria
+	del imobiliaria.exe
