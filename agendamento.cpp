@@ -15,7 +15,8 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
 }
 
 void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
-    for(int i = 0; i < imoveis.size(); i++){
+    for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
+    
 }
