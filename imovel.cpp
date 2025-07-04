@@ -2,8 +2,8 @@
 
 int Imovel::nextId = 1;
 
-Imovel::Imovel(Tipo tipo, int id, double latitude, double longitude, double preco, string endereco){ // Construtor
-    this->tipo = tipo;
+Imovel::Imovel(string tipo, int id, double latitude, double longitude, double preco, string endereco){ // Construtor
+    setTipo(tipo);
     this->id = nextId++;
     proprietarioId = id;
     lat = latitude;
@@ -14,8 +14,16 @@ Imovel::Imovel(Tipo tipo, int id, double latitude, double longitude, double prec
 
 
 // Métodos setters
-void Imovel::setTipo(Tipo tipo){
-    this->tipo = tipo;
+void Imovel::setTipo(string tipo){
+    if(tipo == "Casa"){
+        this->tipo = Casa;
+    } else if(tipo == "Apartamento"){
+        this->tipo = Apartamento;
+    } else if(tipo == "Terreno"){
+        this->tipo = Terreno;
+    } else {
+        this->tipo = Indefinido;
+    }
 }
 
 void Imovel::setEndereco(string endereco){
@@ -40,8 +48,16 @@ void Imovel::setProprietarioId(int id){
 
 
 // Métodos getters
-Tipo Imovel::getTipo(){
-    return tipo;
+string Imovel::getTipo(){
+    if(tipo == Casa){
+        return "Casa";
+    } else if(tipo == Apartamento){
+        return "Apartamento";
+    } else if(tipo == Terreno){
+        return "Terreno";
+    } else {
+        return "Indefinido";
+    }
 }
 
 string Imovel::getEndereco(){

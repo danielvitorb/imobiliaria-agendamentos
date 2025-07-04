@@ -22,16 +22,16 @@ class Imovel {
         string endereco;
 
     public: // Construtor e métodos public
-        Imovel(Tipo tipo = Indefinido, int id = 0, double latitude = 0, double longitude = 0, double preco = 0, string endereco = "");
+        Imovel(string tipo = "", int id = 0, double latitude = 0, double longitude = 0, double preco = 0, string endereco = "");
 
-        void setTipo(Tipo tipo);
+        void setTipo(string tipo);
         void setProprietarioId(int id);
         void setPreco(double preco);
         void setLatitude(double latitude);
         void setLongitude(double longitude);
         void setEndereco(string endereco);
 
-        Tipo getTipo();
+        string getTipo();
         int getId();
         int getProprietarioId();
         double getPreco();
