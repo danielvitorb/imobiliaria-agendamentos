@@ -18,5 +18,11 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
-    
+}
+
+void primeiraVisita(Corretor avaliador){
+    int menorDistancia;
+    for(int j = 0; j < avaliador.getQuantidadeImoveis(); j++){
+        haversine(avaliador.getLatitude(), avaliador.getLongitude(), avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude());
+    }
 }

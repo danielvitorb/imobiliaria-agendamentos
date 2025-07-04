@@ -63,3 +63,11 @@ double Corretor::getLatitude(){
 double Corretor::getLongitude(){
     return lng;
 }
+
+Imovel Corretor::getImovel(int posicao){
+    return imoveis[posicao];
+}
+
+int Corretor::getQuantidadeImoveis(){
+    return imoveis.size();
+}

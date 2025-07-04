@@ -33,6 +33,8 @@ class Corretor {
         bool getAvaliador();
         double getLatitude();
         double getLongitude();
+        Imovel getImovel(int posicao);
+        int getQuantidadeImoveis();
 };
 
 #endif
