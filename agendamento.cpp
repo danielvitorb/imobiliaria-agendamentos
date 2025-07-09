@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <vector>
 #include "corretor.h"
@@ -18,11 +19,19 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
+    for(int k = 0; k < ){
+
+    }
 }
 
-void primeiraVisita(Corretor avaliador){
-    int menorDistancia;
-    for(int j = 0; j < avaliador.getQuantidadeImoveis(); j++){
-        haversine(avaliador.getLatitude(), avaliador.getLongitude(), avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude());
+int primeiraVisita(Corretor &avaliador){
+    int menorDistancia = haversine(avaliador.getLatitude(), avaliador.getLongitude(), avaliador.getImovel(0).getLatitude(), avaliador.getImovel(0).getLongitude());
+    int indice = 0;
+    for(int j = 1; j < avaliador.getQuantidadeImoveis(); j++){
+        if (haversine(avaliador.getLatitude(), avaliador.getLongitude(), avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude()) < menorDistancia){
+            menorDistancia = haversine(avaliador.getLatitude(), avaliador.getLongitude(), avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude());
+            indice = j;
+        }
     }
+    return indice;
 }
