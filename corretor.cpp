@@ -76,6 +76,10 @@ Imovel Corretor::getImovel(int posicao){
     return imoveis[posicao];
 }
 
+Imovel Corretor::getImovelOrdenado(int posicao){
+    return imoveisOrdenados[posicao];
+}
+
 int Corretor::getQuantidadeImoveis(){
     return imoveis.size();
 }

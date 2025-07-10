@@ -37,6 +37,7 @@ class Corretor {
         double getLatitude();
         double getLongitude();
         Imovel getImovel(int posicao);
+        Imovel getImovelOrdenado(int posicao);
         int getQuantidadeImoveis();
 };
 
