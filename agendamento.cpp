@@ -16,12 +16,28 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
 }
 
 void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
+    int proximoLocal;
+    double latitudeAtual, longitudeAtual;
+    vector<Imovel> imoveisOrdenados;
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
-    for(int k = 0; k < ){
-
+    for(int k = 0; k < avaliadores.size(); k++){
+        proximoLocal = maisPerto(avaliadores[k], avaliadores[k].getLatitude(), avaliadores[k].getLongitude());
+        imoveisOrdenados.push_back(avaliadores[k].getImovel(proximoLocal));
     }
+}
+
+int maisPerto(Corretor &avaliador, double lat1, double long1){
+    int menorDistancia = haversine(lat1, long1, avaliador.getImovel(0).getLatitude(), avaliador.getImovel(0).getLongitude());
+    int indice = 0;
+    for (int j = 1; j < avaliador.getQuantidadeImoveis(); j++){
+        if(haversine(lat1, long1, avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude()) < menorDistancia){
+            menorDistancia = haversine(lat1, long1, avaliador.getImovel(j).getLatitude(), avaliador.getImovel(j).getLongitude());
+            indice = j;
+        }
+    }
+    return indice;
 }
 
 int primeiraVisita(Corretor &avaliador){

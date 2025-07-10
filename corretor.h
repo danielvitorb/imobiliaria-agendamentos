@@ -26,6 +26,7 @@ class Corretor {
         void setLongitude(double longitude);
 
         void adicionarImovel(Imovel imovel);
+        void removerImovel(int pos);
 
         int getId();
         string getTelefone();

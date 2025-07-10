@@ -38,6 +38,10 @@ void Corretor::adicionarImovel(Imovel imovel){
     imoveis.push_back(imovel);
 }
 
+void Corretor::removerImovel(int pos){
+    imoveis.erase(imoveis.begin() + pos);
+}
+
 
 // Métodos getters
 int Corretor::getId(){
