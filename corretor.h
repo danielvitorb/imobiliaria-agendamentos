@@ -15,6 +15,7 @@ class Corretor {
         double lat;
         double lng;
         vector<Imovel> imoveis;
+        vector<Imovel> imoveisOrdenados;
 
     public: // Construtor e métodos public
         Corretor(string telefone = "", int x = 0, double latitude = 0, double longitude = 0, string nome = "");
@@ -26,6 +27,7 @@ class Corretor {
         void setLongitude(double longitude);
 
         void adicionarImovel(Imovel imovel);
+        void adicionarImovelOrdenado(Imovel imovel);
         void removerImovel(int pos);
 
         int getId();
