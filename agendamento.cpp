@@ -19,7 +19,7 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
 
 void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     Imovel aux;
-    int proximoLocal, hora = 9, minuto = 0;
+    int proximoLocal, hora, minuto, tempoDeslocamento = 0;
     double latitudeAtual, longitudeAtual;
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
@@ -30,7 +30,7 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
         latitudeAtual = avaliadores[k].getImovel(proximoLocal).getLatitude();
         longitudeAtual = avaliadores[k].getImovel(proximoLocal).getLongitude();
         avaliadores[k].removerImovel(proximoLocal);
-        
+
         while(avaliadores[k].getQuantidadeImoveis() != 0){
             proximoLocal = maisPerto(avaliadores[k], latitudeAtual, longitudeAtual);
             avaliadores[k].adicionarImovelOrdenado(avaliadores[k].getImovel(proximoLocal));
@@ -41,6 +41,11 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     }
 
     for(int m = 0; m < avaliadores.size(); m++){
+        hora = 9; 
+        minuto = 0;
+        tempoDeslocamento = 2 * haversine(avaliadores[m].getLatitude(), avaliadores[m].getLongitude(), avaliadores[m].getImovelOrdenado(0).getLatitude(), avaliadores[m].getImovelOrdenado(0).getLongitude());
+        hora += (tempoDeslocamento / 60);
+        minuto += tempoDeslocamento % 60;
         std::cout << "Corretor " << avaliadores[m].getId() << std::endl;
         std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(0).getId() << std::endl;
     }
