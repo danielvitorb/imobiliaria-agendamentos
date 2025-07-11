@@ -44,10 +44,18 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
         hora = 9; 
         minuto = 0;
         tempoDeslocamento = 2 * haversine(avaliadores[m].getLatitude(), avaliadores[m].getLongitude(), avaliadores[m].getImovelOrdenado(0).getLatitude(), avaliadores[m].getImovelOrdenado(0).getLongitude());
-        hora += (tempoDeslocamento / 60);
+        hora += tempoDeslocamento / 60;
         minuto += tempoDeslocamento % 60;
         std::cout << "Corretor " << avaliadores[m].getId() << std::endl;
         std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(0).getId() << std::endl;
+        for(int o = 0; o < avaliadores[m].getQuantidadeImoveisOrdenados() - 1; o++){
+            tempoDeslocamento = 2 * haversine(avaliadores[m].getImovelOrdenado(o).getLatitude(), avaliadores[m].getImovelOrdenado(o).getLongitude(), avaliadores[m].getImovelOrdenado(o + 1).getLatitude(), avaliadores[m].getImovelOrdenado(o + 1).getLongitude());
+            hora += ((tempoDeslocamento + minuto) / 60) + 1;
+            minuto = (minuto + tempoDeslocamento) % 60;
+            std::cout << "Corretor " << avaliadores[m].getId() << std::endl;
+            std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(o + 1).getId() << std::endl;
+        }
+        cout << endl;
     }
 }
 

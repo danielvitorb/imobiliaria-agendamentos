@@ -39,6 +39,7 @@ class Corretor {
         Imovel getImovel(int posicao);
         Imovel getImovelOrdenado(int posicao);
         int getQuantidadeImoveis();
+        int getQuantidadeImoveisOrdenados();
 };
 
 #endif

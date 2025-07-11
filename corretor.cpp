@@ -83,3 +83,7 @@ Imovel Corretor::getImovelOrdenado(int posicao){
 int Corretor::getQuantidadeImoveis(){
     return imoveis.size();
 }
+
+int Corretor::getQuantidadeImoveisOrdenados(){
+    return imoveisOrdenados.size();
+}
