@@ -3,6 +3,7 @@
 #include "corretor.h"
 #include "cliente.h"
 #include "imovel.h"
+#include "agendamento.h"
 
 int main(){
     int numCorretores, avaliador, numClientes, numImoveis, propId;
@@ -42,13 +43,9 @@ int main(){
 
         Imovel imovel(tipo, propId, lat, lon, preco, endereco);
         imoveis.push_back(imovel);
-        cout << imovel.getTipo() << endl;
-        cout << imovel.getProprietarioId() << endl;
-        cout << imovel.getLatitude() << endl;
-        cout << imovel.getLongitude() << endl;
-        cout << imovel.getPreco() << endl;
-        cout << imovel.getEndereco() << endl;
     }
+
+    gerarAgendamentos(avaliadores, imoveis);
     
     return 0;
 }
