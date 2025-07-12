@@ -14,6 +14,8 @@ int main(){
     vector<Cliente> clientes;
     vector<Imovel> imoveis;
 
+
+    // Leitura de clientes e imóveis...
     cin >> numCorretores;
     for(int i = 0; i < numCorretores; i++){
         cin >> telefone >> avaliador >> lat >> lon;
@@ -45,6 +47,8 @@ int main(){
         imoveis.push_back(imovel);
     }
 
+
+    // Chamada da função que gera e imprime o agendamento
     gerarAgendamentos(avaliadores, imoveis);
     
     return 0;

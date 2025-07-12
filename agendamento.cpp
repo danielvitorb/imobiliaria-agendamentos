@@ -11,10 +11,10 @@ double haversine(double lat1, double lon1, double lat2, double lon2) {
     auto deg2rad = [](double d){ return d * M_PI / 180.0; };
     double dlat = deg2rad(lat2 - lat1);
     double dlon = deg2rad(lon2 - lon1);
-    double a = std::pow(std::sin(dlat/2), 2) +
-               std::cos(deg2rad(lat1)) * std::cos(deg2rad(lat2)) *
-               std::pow(std::sin(dlon/2), 2);
-    double c = 2 * std::atan2(std::sqrt(a), std::sqrt(1 - a));
+    double a = pow(sin(dlat/2), 2) +
+               cos(deg2rad(lat1)) * cos(deg2rad(lat2)) *
+               pow(sin(dlon/2), 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
     return EARTH_R * c;
 }
 
@@ -22,6 +22,7 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     Imovel aux;
     int proximoLocal, hora, minuto, tempoDeslocamento = 0;
     double latitudeAtual, longitudeAtual;
+
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
@@ -48,6 +49,7 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
         tempoDeslocamento = 2 * haversine(avaliadores[m].getLatitude(), avaliadores[m].getLongitude(), avaliadores[m].getImovelOrdenado(0).getLatitude(), avaliadores[m].getImovelOrdenado(0).getLongitude());
         hora += tempoDeslocamento / 60;
         minuto += tempoDeslocamento % 60;
+
         cout << "Corretor " << avaliadores[m].getId() << endl;
         cout << setfill('0') << setw(2) << hora << ":" << setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(0).getId() << endl;
 
@@ -55,7 +57,7 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
             tempoDeslocamento = 2 * haversine(avaliadores[m].getImovelOrdenado(o).getLatitude(), avaliadores[m].getImovelOrdenado(o).getLongitude(), avaliadores[m].getImovelOrdenado(o + 1).getLatitude(), avaliadores[m].getImovelOrdenado(o + 1).getLongitude());
             hora += ((tempoDeslocamento + minuto) / 60) + 1;
             minuto = (minuto + tempoDeslocamento) % 60;
-            std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(o + 1).getId() << std::endl;
+            cout << setfill('0') << setw(2) << hora << ":" << setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(o + 1).getId() << endl;
         }
 
         if(m != avaliadores.size() - 1){ // Verificação para não adicionar uma quebra de linha a mais no final

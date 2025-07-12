@@ -19,11 +19,6 @@ void Cliente::setTelefone(string telefone){
 }
 
 
-void Cliente::adicionarImovel(Imovel imovel){
-    imoveis.push_back(imovel);
-}
-
-
 // Métodos getters
 int Cliente::getId(){
     return id;
