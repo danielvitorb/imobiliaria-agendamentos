@@ -25,7 +25,8 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     for(int i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
-    for(int k = 0; k < avaliadores.size(); k++){
+
+    for(int k = 0; k < avaliadores.size(); k++){ // Algoritmo para ordenar os imoveis de cada corretor
         proximoLocal = maisPerto(avaliadores[k], avaliadores[k].getLatitude(), avaliadores[k].getLongitude());
         avaliadores[k].adicionarImovelOrdenado(avaliadores[k].getImovel(proximoLocal));
         latitudeAtual = avaliadores[k].getImovel(proximoLocal).getLatitude();
@@ -41,27 +42,29 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
         }
     }
 
-    for(int m = 0; m < avaliadores.size(); m++){
+    for(int m = 0; m < avaliadores.size(); m++){ // Loop de impressão
         hora = 9; 
         minuto = 0;
         tempoDeslocamento = 2 * haversine(avaliadores[m].getLatitude(), avaliadores[m].getLongitude(), avaliadores[m].getImovelOrdenado(0).getLatitude(), avaliadores[m].getImovelOrdenado(0).getLongitude());
         hora += tempoDeslocamento / 60;
         minuto += tempoDeslocamento % 60;
-        std::cout << "Corretor " << avaliadores[m].getId() << std::endl;
-        std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(0).getId() << std::endl;
+        cout << "Corretor " << avaliadores[m].getId() << endl;
+        cout << setfill('0') << setw(2) << hora << ":" << setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(0).getId() << endl;
+
         for(int o = 0; o < avaliadores[m].getQuantidadeImoveisOrdenados() - 1; o++){
             tempoDeslocamento = 2 * haversine(avaliadores[m].getImovelOrdenado(o).getLatitude(), avaliadores[m].getImovelOrdenado(o).getLongitude(), avaliadores[m].getImovelOrdenado(o + 1).getLatitude(), avaliadores[m].getImovelOrdenado(o + 1).getLongitude());
             hora += ((tempoDeslocamento + minuto) / 60) + 1;
             minuto = (minuto + tempoDeslocamento) % 60;
             std::cout << std::setfill('0') << std::setw(2) << hora << ":" << std::setw(2) << minuto << " Imóvel " << avaliadores[m].getImovelOrdenado(o + 1).getId() << std::endl;
         }
-        if(m != avaliadores.size() - 1){
+
+        if(m != avaliadores.size() - 1){ // Verificação para não adicionar uma quebra de linha a mais no final
             cout << endl;
         }
     }
 }
 
-int maisPerto(Corretor &avaliador, double lat1, double long1){
+int maisPerto(Corretor &avaliador, double lat1, double long1){ // Função para verificar qual imóvel está mais perto da localização atual do avaliador
     double menorDistancia = haversine(lat1, long1, avaliador.getImovel(0).getLatitude(), avaliador.getImovel(0).getLongitude());
     int indice = 0;
     for (int j = 1; j < avaliador.getQuantidadeImoveis(); j++){
