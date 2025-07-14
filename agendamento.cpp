@@ -23,11 +23,11 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
     int proximoLocal, hora, minuto, tempoDeslocamento = 0;
     double latitudeAtual, longitudeAtual;
 
-    for(int i = 0; i < imoveis.size(); i++){ // Round Robin
+    for(size_t i = 0; i < imoveis.size(); i++){ // Round Robin
         avaliadores[i % avaliadores.size()].adicionarImovel(imoveis[i]);
     }
 
-    for(int k = 0; k < avaliadores.size(); k++){ // Algoritmo para ordenar os imoveis de cada corretor
+    for(size_t k = 0; k < avaliadores.size(); k++){ // Algoritmo para ordenar os imoveis de cada corretor
         proximoLocal = maisPerto(avaliadores[k], avaliadores[k].getLatitude(), avaliadores[k].getLongitude());
         avaliadores[k].adicionarImovelOrdenado(avaliadores[k].getImovel(proximoLocal));
         latitudeAtual = avaliadores[k].getImovel(proximoLocal).getLatitude();
@@ -43,7 +43,7 @@ void gerarAgendamentos(vector<Corretor>& avaliadores, vector<Imovel>& imoveis){
         }
     }
 
-    for(int m = 0; m < avaliadores.size(); m++){ // Loop de impressão
+    for(size_t m = 0; m < avaliadores.size(); m++){ // Loop de impressão
         hora = 9; 
         minuto = 0;
         tempoDeslocamento = 2 * haversine(avaliadores[m].getLatitude(), avaliadores[m].getLongitude(), avaliadores[m].getImovelOrdenado(0).getLatitude(), avaliadores[m].getImovelOrdenado(0).getLongitude());
